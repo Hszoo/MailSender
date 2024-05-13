@@ -1,0 +1,13 @@
+spring :
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: trre1827151@gmail.com
+    password: eajy nnmq iamg abtm
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enalble: true
+            required: true

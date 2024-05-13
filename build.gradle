@@ -1,0 +1,51 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.5'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.hszoo'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '21'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// thymeleaf 설정
+	implementation 'org.thymeleaf:thymeleaf:3.1.0.RELEASE'
+	implementation 'org.thymeleaf:thymeleaf-spring5:3.1.0.RELEASE'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+
+	// jackson 설정
+	implementation "com.fasterxml.jackson.core:jackson-annotations:2.15.2"
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
