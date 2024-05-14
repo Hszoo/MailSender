@@ -2,35 +2,28 @@ package com.hszoo.mailSender.api;
 
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
-
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 @Component
+@NoArgsConstructor
 public class MailManager {
-
     @Value("${spring.mail.username}")
-    private String sender;
+    private String sendFrom;
 
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public MailManager() {
-    }
-
-    public void send(String sendTo, String sub, String con) throws Exception {
-//		HTML 태그 그대로 전송하는 방법
+    public void send(String sendTo, String title, String content) throws Exception {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        mimeMessage.setFrom(sender);
-        //받는사람
+        mimeMessage.setFrom(sendFrom);
         mimeMessage.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(sendTo));
-        mimeMessage.setSubject(sub);
-        mimeMessage.setText(con);
+        mimeMessage.setSubject(title);
+        mimeMessage.setText(content);
         javaMailSender.send(mimeMessage);
-
-
     }
 
 }

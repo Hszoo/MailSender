@@ -6,7 +6,6 @@ import java.util.Random;
 
 /* 인증번호 암호화 -> 클라이언트에 저장하기 위한 인코더 클래스 */
 public class SHA256Util {
-
     /**
      * SHA-256 암호화 함
      * @param source 원본
